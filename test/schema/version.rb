@@ -6,5 +6,5 @@ class SchemaInfo < ActiveRecord::Base
     # at this time
     set_table_name 'schema_info'
   end
-  VERSION = 12
+  VERSION = 13
 end

@@ -448,6 +448,9 @@ class ActiveRecord::Base
     # * ids - the primary keys of the imported ids if the adapter supports it, otherwise an empty array.
     # * results - import results if the adapter supports it, otherwise an empty array.
     def import(*args)
+      # PostgreSQL requires resetting sequence name in order for sequence to be advanced
+      self.reset_sequence_name
+
       if args.first.is_a?( Array ) && args.first.first.is_a?(ActiveRecord::Base)
         options = {}
         options.merge!( args.pop ) if args.last.is_a?(Hash)
